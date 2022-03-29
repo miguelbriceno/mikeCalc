@@ -1,5 +1,127 @@
+/* Fonts:
+font-family: 'Dela Gothic One', cursive;
+font-family: 'DotGothic16', sans-serif;
+font-family: 'Heebo', sans-serif;
+font-family: 'Rajdhani', sans-serif;
+font-family: 'Red Hat Mono', monospace;
+font-family: 'Staatliches', cursive; */
 /* The CSS file is organized from top to bottom
 elemnts in the HTML file. */
 body {
-  background-color: #11468F;
+  font-size: 16px;
+  text-align: center;
+  background-color: lightgray;
+  font-family: 'Heebo', sans-serif;
+}
+
+.calcDisplay {
+  border-style: inset;
+  background-color: #C3DBD9;
+  border-color: #C8F2EF;
+  height: 20vw;
+  width: 80%;
+  margin: 0.5vw;
+  align-self: center;
+  display: inline-block;
+}
+
+.calcDisplay span {
+  display: block;
+  height: 8vw;
+  margin: 0.5vw;
+  font-family: 'DotGothic16', sans-serif;
+  font-size: 6vw;
+  overflow: hidden;
+}
+
+.calcDisplay span #memory{
+  font-size: 4vw;
+  color: gray;
+}
+
+.mainRow {
+  display: block;
+  align-self: center;
+}
+
+div .numbers button {
+  display: inline;
+  width: 20vw;
+  height: 20vw;
+  margin: 1vw;
+  padding: 1vw;
+  border-style: outset;
+  border-width: 1vw;
+  box-shadow: 1vw 1vw #8FBDD3;
+  font-size: 8vw;
+  font-family: 'Dela Gothic One', cursive;
+}
+
+footer {
+  text-align: center;
+  margin: 1vw;
+}
+
+.myName {
+  font-family: 'Rajdhani', sans-serif;
+  margin: 5vw auto 1vw auto;
+  color: #DA1212;
+}
+
+.cmcLink {
+  text-decoration: none;
+  font-size: 16px;
+  font-family: 'Staatliches', cursive;
+  color: #3DBBDD;
+}
+
+footer small {
+  font-size: 8px;
+  display: block;
+  margin: 10px;
+}
+
+footer a {
+  text-decoration: none;
+  color: black;
+}
+
+/* Animations */
+.btnPressed {
+  box-shadow: 0.7vw 0.7vw #FF9F45;
+  position: relative;
+  top: 1vw;
+  left: 1vw;
+}
+
+/* MediaQuerys */
+@media (min-width:900px) {
+  div .numbers button {
+    width: 8vw;
+    height: 8vw;
+    margin: 0.5vw;
+    padding: 0.5vw;
+    border-width: 0.5vw;
+    font-size: 3vw;
+    box-shadow: 0.5vw 0.5vw #8FBDD3;
+  }
+
+  .calcDisplay {
+    height: 10vw;
+    width: 35%;
+    margin: 1vw;
+  }
+
+  .calcDisplay span {
+    height: 4vw;
+    margin: 0.7vw;
+    font-family: 'DotGothic16', sans-serif;
+    font-size: 3vw;
+    overflow: hidden;
+  }
+
+  .calcDisplay span #memory{
+    font-size: 2vw;
+  }
+
 }
