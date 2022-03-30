@@ -1,3 +1,9 @@
+// $(document).keydown(function(e){
+//   console.log(e);
+//   console.log(e.key);
+//   console.log(e.keyCode);
+// });
+
 // Global variable
 var numbersChain = "";
 var memoryChain = "";
@@ -62,47 +68,18 @@ $(document).keydown(function(e) {
       $("#nums").text(numbersChain);
       break;
 
-    case ".":
-      numbersChain = numbersChain.concat(key);
-      $("#nums").text(numbersChain);
-      break;
-
-    case "+":
-      lastOp = "suma";
-      suma(numbersChain);
-      numbersChain = "";
-      $("#nums").text(numbersChain);
-      break;
-
-    case "-":
-      lastOp = "resta";
-      resta(numbersChain);
-      numbersChain = "";
-      $("#nums").text(numbersChain);
-      break;
-
-    case "*":
-      lastOp = "multiplicacion";
-      multiplicacion(numbersChain);
-      numbersChain = "";
-      $("#nums").text(numbersChain);
-      break;
-
-    case "/":
-      lastOp = "division";
-      division(numbersChain);
-      numbersChain = "";
-      $("#nums").text(numbersChain);
-      break;
-
-
     case "Delete":
-      numbersChain = "";
-      memoryChain = "";
+      numbersChain = "0";
+      memoryChain = "0";
       acumulate = 0;
       value = 0;
       $("#nums").text(numbersChain);
       $("#memory").text(numbersChain);
+      break;
+
+    case ".":
+      numbersChain = numbersChain.concat(key);
+      $("#nums").text(numbersChain);
       break;
 
     case "Enter":
@@ -125,6 +102,7 @@ $(document).keydown(function(e) {
           $("#nums").text(numbersChain);
           break;
 
+
         case "division":
           division(numbersChain);
           numbersChain = "";
@@ -140,6 +118,49 @@ $(document).keydown(function(e) {
       break;
   }
 });
+
+// Event listener for other keys
+$(document).keydown(function(e) {
+  var key = e.keyCode;
+  if (lastOp != "") {
+    switch (key) {
+
+      case 107:
+        lastOp = "suma";
+        suma(numbersChain);
+        numbersChain = "";
+        $("#nums").text(numbersChain);
+        break;
+
+      case 109:
+        lastOp = "resta";
+        resta(numbersChain);
+        numbersChain = "";
+        $("#nums").text(numbersChain);
+        break;
+
+      case 106:
+        lastOp = "multiplicacion";
+        multiplicacion(numbersChain);
+        numbersChain = "";
+        $("#nums").text(numbersChain);
+        break;
+
+      case 111:
+        lastOp = "division";
+        division(numbersChain);
+        numbersChain = "";
+        $("#nums").text(numbersChain);
+        break;
+
+      default:
+        break;
+    }
+  } else {
+    // Aqui lo que hace cuando es la primera operacion
+  }
+});
+
 
 function suma(numOnDisplay) {
   value = Number(numOnDisplay);
@@ -161,6 +182,6 @@ function multiplicacion(numOnDisplay) {
 
 function division(numOnDisplay) {
   value = Number(numOnDisplay);
-  acumulate = acumulate / value;
+  acumulate = (acumulate / value);
   $("#memory").text(acumulate);
 }
