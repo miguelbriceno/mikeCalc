@@ -52,7 +52,7 @@ div .numbers button {
   padding: 1vw;
   border-style: outset;
   border-width: 1vw;
-  box-shadow: 1vw 1vw #8FBDD3;
+  box-shadow: 0.5vw 0.5vw #8FBDD3;
   font-size: 8vw;
   font-family: 'Dela Gothic One', cursive;
 }
@@ -88,10 +88,9 @@ footer a {
 
 /* Animations */
 .btnPressed {
-  box-shadow: 0.7vw 0.7vw #FF9F45;
   position: relative;
-  top: 1vw;
-  left: 1vw;
+  top: 0.5vw;
+  left: 0.5vw;
 }
 
 /* MediaQuerys */
@@ -103,7 +102,6 @@ footer a {
     padding: 0.5vw;
     border-width: 0.5vw;
     font-size: 3vw;
-    box-shadow: 0.5vw 0.5vw #8FBDD3;
   }
 
   .calcDisplay {

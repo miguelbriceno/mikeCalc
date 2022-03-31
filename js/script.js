@@ -157,7 +157,7 @@ $(document).keydown(function(e) {
     }
 });
 
-
+// Function that execute the math operations
 function operation(operation, numOnDisplay) {
   switch (operation) {
     case "suma":
@@ -188,3 +188,13 @@ function operation(operation, numOnDisplay) {
       break;
   }
 }
+
+//Add event listener to all buttons and animate them
+$("button").click(function() {
+  $(this).addClass("btnPressed");
+  setTimeout(function(){
+    $("button").removeClass("btnPressed");
+  },100);
+  var btnPressed = $(this).attr("name");
+
+})
