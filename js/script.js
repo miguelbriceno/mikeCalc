@@ -1,12 +1,5 @@
-// $(document).keydown(function(e){
-//   console.log(e);
-//   console.log(e.key);
-//   console.log(e.keyCode);
-// });
-
 // Global variable
 var numbersChain = "";
-var memoryChain = "";
 var value = 0;
 var acumulate = 0;
 var equalPressed = false;
@@ -30,7 +23,6 @@ $(document).keydown(function(e) {
     case "3":
       numbersChain = numbersChain.concat(key);
       $("#nums").text(numbersChain);
-
       break;
 
     case "4":
@@ -68,120 +60,131 @@ $(document).keydown(function(e) {
       $("#nums").text(numbersChain);
       break;
 
-    case "Delete":
-      numbersChain = "0";
-      memoryChain = "0";
-      acumulate = 0;
-      value = 0;
-      $("#nums").text(numbersChain);
-      $("#memory").text(numbersChain);
-      break;
-
     case ".":
       numbersChain = numbersChain.concat(key);
       $("#nums").text(numbersChain);
       break;
 
-    case "Enter":
-      switch (lastOp) {
-        case "suma":
-          suma(numbersChain);
-          numbersChain = "";
-          $("#nums").text(numbersChain);
-          break;
-
-        case "resta":
-          resta(numbersChain);
-          numbersChain = "";
-          $("#nums").text(numbersChain);
-          break;
-
-        case "multiplicacion":
-          multiplicacion(numbersChain);
-          numbersChain = "";
-          $("#nums").text(numbersChain);
-          break;
-
-
-        case "division":
-          division(numbersChain);
-          numbersChain = "";
-          $("#nums").text(numbersChain);
-          break;
-
-        default:
-          break;
-      }
+    case "Delete":
+      numbersChain = "0";
+      acumulate = 0;
+      value = 0;
+      lastOp = "";
+      $("#nums").text(numbersChain);
+      $("#memory").text(numbersChain);
       break;
 
-    default:
-      break;
-  }
-});
-
-// Event listener for other keys
-$(document).keydown(function(e) {
-  var key = e.keyCode;
-  if (lastOp != "") {
-    switch (key) {
-
-      case 107:
+    case "+":
+      if (lastOp == "") {
         lastOp = "suma";
-        suma(numbersChain);
+        acumulate = Number(numbersChain);
+        $("#memory").text(acumulate);
+        $("#nums").text("");
+        numbersChain = "";
+        break;
+      } else {
+        operation(lastOp, numbersChain);
         numbersChain = "";
         $("#nums").text(numbersChain);
+        lastOp = "suma";
         break;
+      }
 
-      case 109:
+    case "-":
+      if (lastOp == "") {
         lastOp = "resta";
-        resta(numbersChain);
+        acumulate = Number(numbersChain);
+        $("#memory").text(acumulate);
+        $("#nums").text("");
+        numbersChain = "";
+        break;
+      } else {
+        operation(lastOp, numbersChain);
         numbersChain = "";
         $("#nums").text(numbersChain);
+        lastOp = "resta";
         break;
+      }
 
-      case 106:
+    case "*":
+      if (lastOp == "") {
         lastOp = "multiplicacion";
-        multiplicacion(numbersChain);
+        acumulate = Number(numbersChain);
+        $("#memory").text(acumulate);
+        $("#nums").text("");
+        numbersChain = "";
+        break;
+      } else {
+        operation(lastOp, numbersChain);
         numbersChain = "";
         $("#nums").text(numbersChain);
+        lastOp = "multiplicacion";
+        break;
+      }
+
+      case "/":
+        if (lastOp == "") {
+          lastOp = "division";
+          acumulate = Number(numbersChain);
+          $("#memory").text(acumulate);
+          $("#nums").text("");
+          numbersChain = "";
+          break;
+        } else {
+          operation(lastOp, numbersChain);
+          numbersChain = "";
+          $("#nums").text(numbersChain);
+          lastOp = "division";
+          break;
+        }
+
+      case "Enter":
+        operation(lastOp, numbersChain);
+        numbersChain = "0";
+        lastOp = "";
+        value = 0;
+        $("#nums").text(numbersChain);
+        numbersChain = acumulate;
         break;
 
-      case 111:
-        lastOp = "division";
-        division(numbersChain);
-        numbersChain = "";
+      case "Backspace":
+        numbersChain = numbersChain.slice(0, -1);
         $("#nums").text(numbersChain);
         break;
 
       default:
         break;
     }
-  } else {
-    // Aqui lo que hace cuando es la primera operacion
-  }
 });
 
 
-function suma(numOnDisplay) {
-  value = Number(numOnDisplay);
-  acumulate = acumulate + value;
-  $("#memory").text(acumulate);
-}
+function operation(operation, numOnDisplay) {
+  switch (operation) {
+    case "suma":
+      value = Number(numOnDisplay);
+      acumulate = acumulate + value;
+      $("#memory").text(acumulate);
+      break;
 
-function resta(numOnDisplay) {
-  value = Number(numOnDisplay);
-  acumulate = acumulate - value;
-  $("#memory").text(acumulate);
-}
+    case "resta":
+      value = Number(numOnDisplay);
+      acumulate = acumulate - value;
+      $("#memory").text(acumulate);
+      break;
 
-function multiplicacion(numOnDisplay) {
-  value = Number(numOnDisplay);
-  acumulate = acumulate * value;
-  $("#memory").text(acumulate);
-}
+    case "multiplicacion":
+      value = Number(numOnDisplay);
+      acumulate = acumulate * value;
+      $("#memory").text(acumulate);
+      break;
 
-function division(numOnDisplay) {
-  value = Number(numOnDisplay);
-  acumulate = (acumulate / value);
-  $("#memory").text(acumulate);
+    case "division":
+      value = Number(numOnDisplay);
+      acumulate = (acumulate / value);
+      $("#memory").text(acumulate);
+      break;
+
+    default:
+      break;
+  }
 }
